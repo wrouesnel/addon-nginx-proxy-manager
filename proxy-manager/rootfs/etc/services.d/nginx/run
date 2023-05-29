@@ -13,6 +13,7 @@ mkdir -p \
   /data/custom_ssl \
   /data/logs \
   /data/access \
+  /data/clientca \
   /tmp/nginx/cache/public \
   /tmp/nginx/cache/private \
   /var/cache/nginx/proxy_temp
