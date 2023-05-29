@@ -1,4 +1,4 @@
-ARG BUILD_FROM=ghcr.io/hassio-addons/base:13.2.2
+ARG BUILD_FROM=ghcr.io/hassio-addons/base:14.0.0
 # hadolint ignore=DL3006
 FROM ${BUILD_FROM}
 
@@ -15,28 +15,29 @@ COPY requirements.txt /tmp/
 ARG NGINX_PROXY_MANAGER_VERSION="v2.10.2"
 # hadolint ignore=DL3003,DL3042
 RUN \
-    apk add --no-cache --virtual .build-dependencies \
-        build-base=0.5-r3 \
-        git=2.38.5-r0 \
-        libffi-dev=3.4.4-r0 \
-        npm=9.1.2-r0 \
-        openssl-dev=3.0.8-r4 \
-        patch=2.7.6-r9 \
-        python3-dev=3.10.11-r0 \
-        yarn=1.22.19-r0 \
+    apk update \
+    && apk add --no-cache --virtual .build-dependencies \
+        build-base \
+        git \
+        libffi-dev \
+        npm \
+        openssl-dev \
+        patch \
+        python3-dev \
+        yarn \
     \
     && apk add --no-cache \
-        apache2-utils=2.4.57-r0 \
-        certbot=1.32.0-r0 \
-        libcap=2.66-r0 \
-        logrotate=3.20.1-r3 \
-        mariadb-client=10.6.12-r0 \
-        nginx-mod-stream=1.22.1-r0 \
-        nginx=1.22.1-r0 \
-        nodejs=18.14.2-r0 \
-        openssl=3.0.8-r4 \
-        py3-pip=22.3.1-r1 \
-        python3=3.10.11-r0 \
+        apache2-utils \
+        certbot \
+        libcap \
+        logrotate \
+        mariadb-client \
+        nginx-mod-stream \
+        nginx \
+        nodejs \
+        openssl \
+        py3-pip \
+        python3 \
     \
     && pip3 install -r /tmp/requirements.txt \
     \
@@ -57,6 +58,7 @@ RUN \
         /app/frontend/js/app/user/permissions.ejs \
     \
     && cd /app/frontend \
+    && python3 -c 'import sys,json; p = json.load(open("package.json","rt")); p["resolutions"] = {"node-gyp": "9.3.1"}; open("package.json","wt").write(json.dumps(p))' \
     && yarn install \
     && yarn build \
     && rm -rf node_modules \
@@ -65,6 +67,7 @@ RUN \
     && cp -r /app/frontend/dist/. /opt/nginx-proxy-manager/frontend/ \
     \
     && cd /app/backend \
+    && python3 -c 'import sys,json; p = json.load(open("package.json","rt")); p["resolutions"] = {"node-gyp": "9.3.1"}; open("package.json","wt").write(json.dumps(p))' \
     && yarn install \
     && rm -rf node_modules \
     && cp -r /app/backend/. /opt/nginx-proxy-manager/ \
