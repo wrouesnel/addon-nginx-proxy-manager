@@ -1,0 +1,3 @@
+name: nginx-proxy-manager development repo
+url: 'https://github.com/wrouesnel/addon-nginx-proxy-manager'
+maintainer: William Rouesnel <wrouesnel@wrouesnel.com>

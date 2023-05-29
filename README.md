@@ -1,3 +1,10 @@
+**FORK**
+
+This my forked repository to allow running changes found on my [nginx-proxy-manager fork](https://github.com/wrouesnel/nginx-proxy-manager).
+
+Notably this includes client certificate support. This repository is not guaranteed to stay up to date and will be
+deprecated once the patches land and are available from upstream.
+
 # Home Assistant Community Add-on: Nginx Proxy Manager
 
 [![GitHub Release][releases-shield]][releases]
