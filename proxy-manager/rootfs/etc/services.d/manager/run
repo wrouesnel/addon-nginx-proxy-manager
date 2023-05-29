@@ -10,6 +10,7 @@ bashio::log.info "Starting the Manager..."
 options+=(--abort_on_uncaught_exception)
 options+=("--max_old_space_size=250")
 
+export NODE_CONFIG_DIR=/data/manager
 export NODE_ENV=production
 
 if bashio::debug; then
