@@ -81,7 +81,6 @@ RUN \
     \
     && rm -f -r /etc/nginx \
     && cp -r /app/docker/rootfs/etc/nginx /etc/nginx \
-    && sed -i '/^user .*;/d' /etc/nginx/nginx.conf \
     && rm -f /etc/nginx/conf.d/dev.conf \
     \
     && cp /app/docker/rootfs/etc/letsencrypt.ini /etc \
@@ -96,6 +95,9 @@ RUN \
         /run/mysqld \
         /run/nginx \
     \
+    && addgroup -S npm \
+    && adduser -D -H -s /bin/false -S -h /tmp/npmuserhome npm \
+    && adduser npm npm \
     && modclean \
         --path /opt/nginx-proxy-manager \
         --no-progress \
