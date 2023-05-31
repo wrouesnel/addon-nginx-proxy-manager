@@ -21,7 +21,7 @@ RUN \
         git \
         libffi-dev \
         npm \
-        openssl-dev \
+        libressl-dev \
         patch \
         python3-dev \
         yarn \
@@ -35,7 +35,7 @@ RUN \
         nginx-mod-stream \
         nginx \
         nodejs \
-        openssl \
+        libressl \
         py3-pip \
         python3 \
     \
