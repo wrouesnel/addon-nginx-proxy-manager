@@ -44,6 +44,7 @@ sed -i 's#daemon off;#daemon off;\nload_module /usr/lib/nginx/modules/ngx_stream
 
 if ! bashio::fs.directory_exists "/data/nginx"; then
     mkdir -p \
+        /data/nginx/client \
         /data/nginx/dead_host \
         /data/nginx/proxy_host \
         /data/nginx/redirection_host \
