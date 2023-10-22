@@ -7,4 +7,4 @@ build_from:
   i386: ghcr.io/hassio-addons/base:14.2.2
 codenotary:
   base_image: codenotary@frenck.dev
-  signer: codenotary@frenck.dev
+  signer: wrouesnel@wrouesnel.com
